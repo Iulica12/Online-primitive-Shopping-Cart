@@ -45,7 +45,7 @@
 <BODY>
     <div id="shopping-cart">
     <div class="txt-heading">
-    <div class="txt-heading-label">Cos Cumparaturi</div> <a id="btnEmpty" href="cos.php?action=empty"><img src="empty-cart.png" alt="empty-cart" title="Empty Cart" /></a>
+    <div class="txt-heading-label">Cos Cumparaturi</div> <a id="btnEmpty" href="cos.php?action=empty"><img src="images/empty-cart.png" width="35" alt="empty-cart" title="Empty Cart" /></a>
     </div>
     <?php
     $cartItem = $shoppingCart->getMemberCartItem($member_id);
@@ -72,19 +72,18 @@
     <td
     style="text-align: right; border-bottom: #F0F0F0 1px solid;"><?php echo $item["cos_cantitate"]; ?></td>
     <td
-    style="text-align: right; border-bottom: #F0F0F0 1px solid;"><?php echo "$".$item["price"]; ?></td>
+    style="text-align: right; border-bottom: #F0F0F0 1px solid;"><?php echo $item["price"] . " RON"; ?></td>
     <td
-    style="text-align: center; border-bottom: #F0F0F0 1px solid;"><a
-    href="cos.php?action=remove&id=<?php echo $item["cart_id"]; ?>"
-    class="btnRemoveAction"><img src="icon-delete.png" alt="icon-delete" title="Remove Item" /></a></td>
+    style="text-align: center; border-bottom: #F0F0F0 1px solid;"><a href="cos.php?action=remove&id=<?php echo $item["cart_id"]; ?>"
+    class="btnRemoveAction"><img src="images/icon-delete.png" width="20" alt="icon-delete" title="Remove Item" /></a></td>
     </tr>
     <?php
     $item_total += ($item["price"] * $item["cos_cantitate"]);
     }
     ?>
     <tr>
-    <td colspan="3" align=right><strong>Total:</strong></td>
-    <td align=right><?php echo "$".$item_total; ?></td>
+    <td colspan="3" text-align=right><strong>Total:</strong></td>
+    <td text-align=right><?php echo $item_total . " RON"; ?></td>
     <td></td>
     </tr>
     </tbody>

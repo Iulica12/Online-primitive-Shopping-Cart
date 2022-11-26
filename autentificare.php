@@ -49,8 +49,18 @@
         else 
         {
             // username incorect
-            echo 'Incorrect username sau password!';
+            //se adauga si asta in admin
+            if($_POST['username'] == 'admin' and $_POST['password']=='admin')
+            { 
+                $_SESSION['loggedin'] = TRUE;
+                header('Location: Produse_Vizualizare.php');
+                $_SESSION['admin'] = TRUE;
             }
+            else
+            {
+                echo 'Incorrect username sau password!'; 
+            }
+        }
         $stmt->close();
     }
 ?>

@@ -1,11 +1,25 @@
+<?php
+// se adauga si asta in vizualizare
+session_start();
+echo $_SESSION['id'];
+if (!$_SESSION['admin'])
+{
+    header('Location: indexl.html');
+    exit;
+}
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
     <title>Vizualizare Inregistrari</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Inregistrarile din tabela datepers</h1>
+    <h1>Inregistrarile din tabela datepers</h1> 
+    <p style="text-align: right"><a href="logout.php" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a> </p>
     <p><b>Toate inregistrarile din datepers</b</p>
     <?php
         // connectare bazadedate
