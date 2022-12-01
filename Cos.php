@@ -40,7 +40,6 @@
 <HTML>
 <HEAD>
     <TITLE>creare cos permament in PHP</TITLE>
-    <link href="style.css" type="text/css" rel="stylesheet" />
 </HEAD>
 <BODY>
     <div id="shopping-cart">

@@ -2,11 +2,6 @@
 // se adauga si asta in vizualizare
 session_start();
 echo $_SESSION['id'];
-if (!$_SESSION['admin'])
-{
-    header('Location: indexl.html');
-    exit;
-}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>

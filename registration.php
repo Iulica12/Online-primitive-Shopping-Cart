@@ -30,7 +30,7 @@
         exit('Password trebuie sa fie intre 5 si 20 charactere!');
     }
     // verificam daca contul userului exista.
-    if ($stmt = $con->prepare('SELECT id, password FROM utilizatori WHERE username = ?')) {
+    if ($stmt = $con->prepare('SELECT Client_id, Parola FROM clienti WHERE username = ?')) {
         // hash parola folosind funcția PHP password_hash.
         $stmt->bind_param('s', $_POST['username']);
         $stmt->execute();
@@ -42,19 +42,43 @@
         } 
         else 
         {
-            if ($stmt = $con->prepare('INSERT INTO utilizatori (username, password, email) VALUES (?, ?, ?)')) {
-                // Nu dorim să expunem parole în baza noastră de date, așa că hash parola și utilizați //password_verify atunci când un utilizator se conectează.
-                $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                $stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
-                $stmt->execute();
-                echo 'Success inregistrat!';
-                header('Location: indexl.html');
-            } 
-            else 
+            $user = htmlentities($_POST['username'], ENT_QUOTES);
+            $pass = password_hash(htmlentities($_POST['password'], ENT_QUOTES),PASSWORD_DEFAULT);
+            $em = htmlentities($_POST['email'], ENT_QUOTES);
+            $str = htmlentities($_POST['str'], ENT_QUOTES);
+            $city = htmlentities($_POST['city'], ENT_QUOTES);
+            $country = htmlentities($_POST['country'], ENT_QUOTES);
+            $zip = htmlentities($_POST['zip'], ENT_QUOTES);
+            $numberC = htmlentities($_POST['numberC'], ENT_QUOTES);
+            $typeC = htmlentities($_POST['typeC'], ENT_QUOTES);
+            $expC = htmlentities($_POST['expC'], ENT_QUOTES);
+            $accEmail = htmlentities($_POST['accEmail'], ENT_QUOTES);
+            $name = htmlentities($_POST['name'], ENT_QUOTES);
+            $RC = htmlentities($_POST['RC'], ENT_QUOTES);
+            $codF = htmlentities($_POST['codF'], ENT_QUOTES);
+            // verificam daca sunt completate
+            if ($name == '' || $user == ''||$pass==''||$em==''||$str==''||$city=='' || $country=='' || $zip=='' || $numberC=='' || $typeC=='' || $expC=='' || $accEmail=='' )
             {
-                // Ceva nu este în regulă cu declarația sql, verificați pentru a vă asigura că tabelul conturilor //există cu toate cele 3 câmpuri.
-                echo 'Nu se1 poate face prepare statement!';
+                // daca sunt goale se afiseaza un mesaj
+                $error = 'ERROR: Campuri goale!';
+            } 
+            else
+            {
+                if ($stmt = $con->prepare('INSERT INTO clienti (username, Parola, email,Strada, Oras, Tara, CodPostal, NrCard, TipCard, DataExpCard, AcceptareEmail, Nume, NrInregRC, cod_fiscal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)')) {
+                    // Nu dorim să expunem parole în baza noastră de date, așa că hash parola și utilizați //password_verify atunci când un utilizator se conectează.
+                    //$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                    $stmt->bind_param('ssssssssssssss', $user, $pass, $em, $str, $city, $country, $zip, $numberC, $typeC, $expC,$accEmail,$name,$RC,$codF);
+                    $stmt->execute();
+                    echo 'Success inregistrat!';
+                    header('Location: indexl.html');
+                } 
+                else 
+                {
+                    // Ceva nu este în regulă cu declarația sql, verificați pentru a vă asigura că tabelul conturilor //există cu toate cele 3 câmpuri.
+                    echo 'Nu se1 poate face prepare statement!';
+                }
             }
+           
         }
         $stmt->close();
     } else {

@@ -17,7 +17,7 @@
         exit('Completati username si password !');
     }
     // Pregătiți SQL-ul nostru, pregătirea instrucțiunii SQL va împiedica injecția SQL.
-    if ($stmt = $con->prepare('SELECT id, password FROM utilizatori WHERE username = ?')) {
+    if ($stmt = $con->prepare('SELECT Client_id, Parola FROM clienti WHERE username = ?')) {
         // Parametrii de legare (s = șir, i = int, b = blob etc.), în cazul nostru numele de utilizator este un șir, //așa că vom folosi „s”
         $stmt->bind_param('s', $_POST['username']);
         $stmt->execute();
@@ -49,17 +49,7 @@
         else 
         {
             // username incorect
-            //se adauga si asta in admin
-            if($_POST['username'] == 'admin' and $_POST['password']=='admin')
-            { 
-                $_SESSION['loggedin'] = TRUE;
-                header('Location: Produse_Vizualizare.php');
-                $_SESSION['admin'] = TRUE;
-            }
-            else
-            {
                 echo 'Incorrect username sau password!'; 
-            }
         }
         $stmt->close();
     }

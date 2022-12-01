@@ -4,9 +4,9 @@
     if(isset($_POST['submit']))
     {
         $username = $_POST["user"]; /// se retine in variabila username ceea ce am introdus in input ul cu numele user
-        $password = md5($_POST["pass"]);
-        $query_admin = "SELECT * FROM userspass WHERE user='".$username."' AND md5(pass)='".$password."' ";
-        $query_client = "SELECT * FROM clienti WHERE username='".$username."' AND md5(Parola)='".$password."' ";
+        $password = $_POST["pass"];
+        $query_admin = "SELECT * FROM utilizatori WHERE username='".$username."' AND password='".$password."' ";
+        $query_client = "SELECT * FROM clienti WHERE username='".$username."' AND Parola='".$password."' ";
         $result_admin = $mysqli->query($query_admin);
         $result_client = $mysqli->query($query_client);
         /*** Testez daca interogarea returneaza vreo linie ***/

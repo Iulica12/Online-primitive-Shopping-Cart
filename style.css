@@ -1,0 +1,73 @@
+/*body{
+    margin: 0;
+    font-family: sans-serif;
+    background: #f2f2f2;
+}
+#produs_name{
+    text-align: center;
+    font-size: 30px;
+    margin: 0;
+    padding-top: 10px;
+}
+a{
+    text-decoration: none;
+}
+.product-item{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
+
+}
+form, input{
+   
+    width: 20%;
+    margin: 15px;
+    box-sizing: border-box;
+    float: left;
+    text-align: center;
+    align-content: center;
+    border-radius: 20px;
+    cursor: pointer;
+    padding-top: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0,10px,10px,rgba(0,0,0,0.22);
+    transition: .4s;
+    background: #f2f2f2;
+} 
+form:hover, input:hover{
+   
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transform: translate(0px, -8px);
+
+} 
+img{
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+
+}*/
+*{
+	box-sizing: border-box;
+	font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+html{
+	height: 100%;
+}
+body{
+	position: relative;
+	min-height: 100%;
+	color: #555555;
+	background-color: #FFFFFF;
+	margin: 0;
+	padding-bottom: 100px; /* Same height as footer */
+}
+h1, h2, h3, h4, h5{
+	color: #394352;
+}

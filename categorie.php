@@ -1,4 +1,9 @@
-<?php require_once "ShoppingCart.php";?>
+<?php
+    require_once "ShoppingCart.php";
+    if(isset($_POST['submit_cat'])){
+        if(!empty($_POST['select_category'])) {
+          $selected = $_POST['select_category'];
+?>
 <HTML>
 <HEAD>
     <TITLE>Creare cos cumparaturi </TITLE>
@@ -6,40 +11,29 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </HEAD>
-<BODY> 
-<center>
-    <div class="container mt-5">
-        <form action="categorie.php" method="post" class="mb-3">
-            <?php
-                Include("Conectare.php");
-                $result = $mysqli->query("SELECT DISTINCT categorie FROM tbl_product");
-                echo "<select name='select_category'>";
-                echo "<option>SELECT CATEGORY</option>";
-                while ($row = $result->fetch_array())
-                {
-                    echo "<option>$row[categorie]</option> ";
-                }
-                echo "</select>";
-            ?> 
-            <br> </br>
-            <input type="submit" name="submit_cat" vlaue="Choose options">
-        </form>
-    </div>
-
-    <div id="product-grid">
+<BODY>
+        <p style="text-align: left"><a href="magazin.php" class="btn btn-warning">
+          <span class=""></span> Back
+        </a> </p>
+          <div id="product-grid">
     <p style="text-align: right"><a href="logout.php" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-log-out"></span> Log out
         </a> </p>
+        <center>
         <div class="txt-heading"><div class="txt-heading-label">Products</div></div>
             <?php
                 $shoppingCart = new ShoppingCart();
-                $query = "SELECT * FROM tbl_product";
-                $product_array = $shoppingCart->getAllProduct($query);
+                echo $selected;
+                $query = "SELECT * FROM tbl_product WHERE categorie='.$selected.'";
+                $product_array = $shoppingCart->getAllProductCateg($selected);
                 if (! empty($product_array)) {
                 foreach ($product_array as $key => $value) {
             ?>
+            </center>
+            <center>
             <div class="all">
             <div class="product-item">
+           
                 <form method="post" action="Cos.php?action=add&code=<?php echo $product_array[$key]["code"]; ?>">
                 <div class="product-image">
                     <img src="<?php echo $product_array[$key]["image"]; ?>" width="250" style="allign: center">
@@ -55,16 +49,22 @@
                 <input type="submit" value="Add to cart" class="btnAddAction" />
             </div>
             </div>
+        
+       
         </div>
             </form>
+            
+    </center>
     <div>
         <?php
         }
         }
         ?>
     </div>
-    <div>
-    </center>
-</BODY>
-
-</HTML>
+        <?php
+        } else {
+          echo 'Please select the value.';
+        }
+      } ?>
+      </BODY>
+     </HTML>

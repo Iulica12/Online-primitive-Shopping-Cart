@@ -2,6 +2,12 @@
     require_once "DBController.php";
     class ShoppingCart extends DBController
     {
+    function getAllProductCateg($categ)
+    {
+        $query = "SELECT * FROM tbl_product WHERE categorie='".$categ."'";
+        $productResult = $this->getDBResult($query);
+        return $productResult;
+    }
     function getAllProduct()
     {
         $query = "SELECT * FROM tbl_product";
